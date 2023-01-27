@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS `db_iamok` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
+USE `db_iamok`;
+
+DELIMITER $$
+CREATE DEFINER=`user_iamok`@`%` FUNCTION `checked_in_within_hours` (`hours` INT) RETURNS TINYINT(1)  RETURN
+    (SELECT CASE
+        WHEN checked_in_at > date_sub(now(), interval hours hour) THEN true
+        ELSE false
+    END
+    FROM iamok_check_in 
+    ORDER by checked_in_at DESC limit 1)$$
+
+DELIMITER ;
+
+CREATE TABLE `iamok_check_in` (
+  `checked_in_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+
+ALTER TABLE `iamok_check_in`
+  ADD PRIMARY KEY (`checked_in_at`);
+COMMIT;
