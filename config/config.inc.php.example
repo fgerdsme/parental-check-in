@@ -1,0 +1,12 @@
+<?php 
+    $config['DB_HOST'] = 'db_host';
+    $config['DB_USERNAME'] = 'db_username';
+    $config['DB_PASSWORD'] = 'db_password';
+    $config['DB_NAME'] = 'db_name';
+
+    $config['MAIL_RECIPIENT'] = 'mail_recipient';                       // receipient of the alert mail
+    $config['MAIL_SUBJECT'] = 'Attention: Check-in missed';             // mail subject
+    $config['MAIL_MESSAGE'] = 'Emergency: parental check-in missed';    // mail message
+
+    $config['CONFIG_CHECK_IN_HOURS'] = 8;                               // last check in has to happen this value (in hours) before the cron call (see README.md)
+?>
