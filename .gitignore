@@ -1,0 +1,4 @@
+.vscode/**
+cgi-bin/**
+config/config.inc.php
+backup/**
